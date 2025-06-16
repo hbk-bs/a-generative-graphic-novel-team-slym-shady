@@ -1,0 +1,29 @@
+*,
+::after,
+::before {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+html {
+	font-size: 110%;
+}
+html,
+body {
+	height: 100%;
+}
+
+body {
+	/* System UI */
+	font-family: system-ui, sans-serif;
+	font-weight: normal;
+	line-height: 1.5;
+}
+image,
+canvas,
+iframe,
+video,
+svg,
+textarea {
+	display: block;
+}
