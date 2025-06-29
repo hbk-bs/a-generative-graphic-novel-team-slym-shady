@@ -4,14 +4,22 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>CHANGE THIS TITLE</title>
+	<title>Image Gallery</title>
 	<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 	<main>
-		<h1>CHANGE THIS TITLE</h1>
-		<p>CHANGE THIS TEXT</p>
+		<h1>Image Gallery</h1>
+		<div class="gallery-container">
+			<img id="prevPreview" class="preview-image" alt="Previous preview">
+			<div class="main-image-container">
+				<img src="" alt="Gallery image" id="galleryImage">
+				<button id="prevBtn" aria-label="Previous image">&lt;</button>
+				<button id="nextBtn" aria-label="Next image">&gt;</button>
+			</div>
+			<img id="nextPreview" class="preview-image" alt="Next preview">
+		</div>
 	</main>
 	<script src="index.js"></script>
 </body>
