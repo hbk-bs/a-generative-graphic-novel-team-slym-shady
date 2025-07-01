@@ -2,26 +2,51 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Image Gallery</title>
-	<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+    <link rel="stylesheet" href="style.css">
+
+
 </head>
 
+
 <body>
-	<main>
-		<h1>whats wrong?</h1>
-		<div class="gallery-container">
-			<img id="prevPreview" class="preview-image" alt="Previous preview">
-			<div class="main-image-container">
-				<img src="" alt="Gallery image" id="galleryImage">
-				<button id="prevBtn" aria-label="Previous image">&lt;</button>
-				<button id="nextBtn" aria-label="Next image">&gt;</button>
-			</div>
-			<img id="nextPreview" class="preview-image" alt="Next preview">
-		</div>
-	</main>
-	<script src="index.js"></script>
+    <div id="page">
+
+        <div class="banner">
+            <h1>What's Wrong?</h1>
+            <p>An AI Graphic Novel</p>
+        </div>
+
+        <div class="toolbar">
+            <button id="toolbar">1</button>
+            <button id="toolbar">2</button>
+            <button id="toolbar">3</button>
+        </div>
+
+        <div class="content">
+            <img id="prevPreview" class="preview-image" alt="Previous preview">
+            <div class="main-image-container">
+              <img src="" alt="Gallery image" id="galleryImage">
+               <button id="prevBtn" aria-label="Previous image">&lt;</button>
+            <button id="nextBtn" aria-label="Next image">&gt;</button>
+            </div>
+            <img id="nextPreview" class="preview-image" alt="Next preview">
+        </div>
+
+        <div class="footer">
+           
+        </div>
+
+    </div>
+    <footer>
+        <p>
+            <span id="copyright">2025 -</span>
+            Maggie - Ylva - Liana - Sarah
+        </p>
+    </footer>
+    <script src="index.js"></script>
 </body>
 
 </html>
