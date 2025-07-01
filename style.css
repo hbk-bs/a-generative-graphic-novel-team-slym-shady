@@ -34,7 +34,18 @@ svg,
 textarea {
     display: block;
 }
+.image-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+}
 
+.image-gallery img {
+  max-width: 200px;
+  height: auto;
+  border-radius: 8px;
+}
 main {
     text-align: center;
     background: #fff;
