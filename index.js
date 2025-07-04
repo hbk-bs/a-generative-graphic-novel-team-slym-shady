@@ -4,9 +4,31 @@ document.addEventListener('DOMContentLoaded', () => {
     // 2. Do these filenames EXACTLY match the files in your 'assets' folder (case-sensitive)?
     //    e.g., 'assets/image1.jpg' must match the file name perfectly.
     const images = [
-        'assets/image1.jpg',
-        'assets/image2.jpg',
-        'assets/image3.jpg',
+        'assets/images/frame0.png',
+        'assets/images/frame1.png',
+        'assets/images/frame2.png',
+        'assets/images/frame3.png',
+        'assets/images/frame4.png', 
+        'assets/images/frame5.png',
+        'assets/images/frame6.png',
+        'assets/images/frame7.png',
+        'assets/images/frame8.png',
+        'assets/images/frame9.png',
+        'assets/images/frame10.png',
+        'assets/images/frame11.png',
+        'assets/images/frame12.png',
+        'assets/images/frame13.png',
+        'assets/images/frame14.png',
+        'assets/images/frame15.png',
+        'assets/images/frame16.png',
+        'assets/images/frame17.png',
+        'assets/images/frame18.png',
+        'assets/images/frame19.png',
+        'assets/images/frame20.png',
+        'assets/images/frame21.png',
+        'assets/images/frame22.png',
+       
+
         
     ];
 
