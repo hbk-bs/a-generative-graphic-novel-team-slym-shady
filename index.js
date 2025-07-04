@@ -1,8 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // VERIFY THESE PATHS
-    // 1. Is the 'assets' folder in the same directory as index.html?
-    // 2. Do these filenames EXACTLY match the files in your 'assets' folder (case-sensitive)?
-    //    e.g., 'assets/image1.jpg' must match the file name perfectly.
     const images = [
         'assets/images/frame0.png',
         'assets/images/frame1.png',
@@ -27,22 +23,32 @@ document.addEventListener('DOMContentLoaded', () => {
         'assets/images/frame20.png',
         'assets/images/frame21.png',
         'assets/images/frame22.png',
-       
+    ];
 
-        
+    const texts = [
+        "Caption for Frame 0", "Caption for Frame 1", "Caption for Frame 2",
+        "Caption for Frame 3", "Caption for Frame 4", "Caption for Frame 5",
+        "Caption for Frame 6", "Caption for Frame 7", "Caption for Frame 8",
+        "Caption for Frame 9", "Caption for Frame 10", "Caption for Frame 11",
+        "Caption for Frame 12", "Caption for Frame 13", "Caption for Frame 14",
+        "Caption for Frame 15", "Caption for Frame 16", "Caption for Frame 17",
+        "Caption for Frame 18", "Caption for Frame 19", "Caption for Frame 20",
+        "Caption for Frame 21", "Caption for Frame 22",
     ];
 
     let currentIndex = 0;
 
     const galleryImage = document.getElementById('galleryImage');
+    const imageCaption = document.getElementById('image-caption');
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
     const prevPreview = document.getElementById('prevPreview');
     const nextPreview = document.getElementById('nextPreview');
+    const mainImageContainer = document.querySelector('.main-image-container'); // Target for swipe
 
-    function updateImage() {
-        // This function will fail if the paths in the `images` array are incorrect.
+    function updateContent() {
         galleryImage.src = images[currentIndex];
+        imageCaption.textContent = texts[currentIndex];
 
         const prevIndex = (currentIndex === 0) ? images.length - 1 : currentIndex - 1;
         const nextIndex = (currentIndex === images.length - 1) ? 0 : currentIndex + 1;
@@ -51,16 +57,46 @@ document.addEventListener('DOMContentLoaded', () => {
         nextPreview.src = images[nextIndex];
     }
 
-    prevBtn.addEventListener('click', () => {
-        currentIndex = (currentIndex === 0) ? images.length - 1 : currentIndex - 1;
-        updateImage();
+    function showNext() {
+        currentIndex = (currentIndex < images.length - 1) ? currentIndex + 1 : 0;
+        updateContent();
+    }
+
+    function showPrev() {
+        currentIndex = (currentIndex > 0) ? currentIndex - 1 : images.length - 1;
+        updateContent();
+    }
+
+    prevBtn.addEventListener('click', showPrev);
+    nextBtn.addEventListener('click', showNext);
+
+    // --- SWIPE FUNCTIONALITY START ---
+    let touchStartX = 0;
+    let touchEndX = 0;
+    const swipeThreshold = 50; // Minimum distance for a swipe
+
+    mainImageContainer.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    mainImageContainer.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
     });
 
-    nextBtn.addEventListener('click', () => {
-        currentIndex = (currentIndex === images.length - 1) ? 0 : currentIndex + 1;
-        updateImage();
-    });
+    function handleSwipe() {
+        const swipeDistance = touchEndX - touchStartX;
 
-    // Load the first image and previews initially
-    updateImage();
+        if (swipeDistance > swipeThreshold) {
+            // Swipe Right
+            showPrev();
+        } else if (swipeDistance < -swipeThreshold) {
+            // Swipe Left
+            showNext();
+        }
+    }
+    // --- SWIPE FUNCTIONALITY END ---
+
+    // Initial load
+    updateContent();
 });
