@@ -1,19 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-
+    
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>CHANGE THIS TITLE</title>
-	<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Whats Wrong?</title>
+    
+    <!-- Add this line for the favicon -->
+    <link rel="icon" type="image/png" href="assets/images/icon.png">
+
+    <link rel="stylesheet" href="style.css">
 </head>
 
+
 <body>
-	<main>
-		<h1>CHANGE THIS TITLE</h1>
-		<p>CHANGE THIS TEXT</p>
-	</main>
-	<script src="index.js"></script>
+    <div id="backlink">
+        <a href="https://rundgang2025.qawsed.site">Back to the Rundgang 2025</a>
+    </div>
+    <div id="page">
+
+        <div class="banner">
+            <h1>Was ist Los?</h1>
+            <p>Ein KI Graphic Novel</p>
+        </div>
+
+        
+
+        <div class="content">
+            <div class="main-image-container">
+              <img src="assets/images/frame0.png" alt="Gallery image" id="galleryImage">
+            </div>
+        </div>
+
+        <div id="image-caption" class="caption-box"></div>
+
+        <!-- This container will now hold the buttons AND the indicators -->
+        <div id="navigation-controls" class="nav-container">
+            <button id="prevBtn" class="nav-arrow-btn">&lt;</button>
+            <div id="page-indicators" class="indicators-container"></div>
+            <button id="nextBtn" class="nav-arrow-btn">&gt;</button>
+        </div>
+
+        <div class="footer">
+           
+        </div>
+
+    </div>
+   
+    <script src="index.js"></script>
 </body>
 
 </html>

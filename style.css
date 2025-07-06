@@ -1,29 +1,358 @@
 *,
 ::after,
 ::before {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
+
 html {
-	font-size: 110%;
+    font-size: 110%;
 }
+
 html,
 body {
-	height: 100%;
+    height: 100%;
 }
 
 body {
-	/* System UI */
-	font-family: system-ui, sans-serif;
-	font-weight: normal;
-	line-height: 1.5;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f4f4f8;
+    margin: 0;
+    color: #333;
 }
+
 image,
 canvas,
 iframe,
 video,
 svg,
 textarea {
-	display: block;
+    display: block;
+}
+.image-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  
+}
+
+.image-gallery img {
+  max-width: 200px;
+  height: auto;
+  border-radius: 8px;
+ 
+}
+main {
+    text-align: center;
+    background: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    margin-top: 0;
+}
+
+
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    flex-grow: 1;
+}
+
+.main-image-container {
+    position: relative;
+    
+}
+
+#galleryImage {
+    max-width: 60vw;
+    max-height: 60vh;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #eee;
+    display: block;
+}
+
+.preview-image {
+    width: 80px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 4px;
+    opacity: 0.6;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.preview-image:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+
+
+
+
+
+
+.caption-box {
+    margin: 8px auto;
+    padding: 15px;
+    max-width: 70%;
+    background-color: #f5f5f5;
+    text-align: center; 
+    color: #333;
+
+}
+
+@media (max-width: 600px) {
+    #galleryImage {
+        max-width: 90vw;
+        max-height: 90vh;
+    }
+
+    .preview-image {
+        width: 60px;
+        height: 45px;
+    }
+
+    .nav-arrow-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 1.2rem;
+    }
+}
+
+/* --- Mobile Styles --- */
+/* This block applies styles only on screens smaller than 768px */
+@media (max-width: 768px) {
+
+    /* Hide elements that are not the main image or caption */
+    .banner,
+    .toolbar,
+    .preview-image,
+    footer,
+    #backlink {
+        display: none;
+    }
+
+    /* Make the page a flex container to center the content block */
+    #page {
+        display: flex;
+        flex-direction: column;
+        justify-content: center; /* Vertically center the content */
+        min-height: 100vh;
+        padding: 0;
+    }
+
+    /* Remove old layout rules from the content div */
+    .content {
+        padding: 0;
+        margin: 0;
+    }
+
+    .main-image-container {
+        margin: 0;
+    }
+
+    #galleryImage {
+        max-width: 100vw;
+        max-height: 70vh;
+        border-radius: 0;
+        display: block; /* Prevents extra space below the image */
+    }
+
+    /* Adjust caption styling for mobile */
+    .caption-box {
+        max-width: 90%;
+        /* Reduce the top margin to bring it closer to the image */
+        margin: 1rem auto;
+        font-size: 0.9rem;
+        border-left-width: 4px;
+    }
+
+    .nav-arrow-btn {
+        /* Hide the original text ("Previous", "Next") */
+        font-size: 0;
+        
+        /* Make the buttons circular and smaller for mobile */
+        width: 40px;
+        height: 40px;
+        padding: 0;
+        border-radius: 50%;
+        position: relative; /* Needed for pseudo-element positioning */
+    }
+
+    /* Add the new content ("P" and "N") */
+    .nav-arrow-btn::before {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 1rem; /* Set the font size for the letters */
+        font-weight: bold;
+    }
+
+    
+}
+
+/* Add these styles to the end of your style.css file */
+
+/* New Navigation Container Styles */
+.nav-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 0;
+    gap: 15px; /* Space between buttons and indicators */
+}
+
+/* Updated Text Button Styles */
+.nav-arrow-btn {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    /* Use a pill shape instead of a circle */
+    border-radius: 20px; 
+    /* Remove fixed width/height and use padding */
+    padding: 8px 16px;
+    font-size: 0.9rem; /* Adjusted font size */
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.nav-arrow-btn:hover {
+    background-color: #e0e0e0;
+}
+
+/* Styles for the indicator dots container */
+.indicators-container {
+    text-align: center;
+    padding: 15px 0;
+}
+
+/* Updated style for the numbered indicators */
+.indicator-btn {
+    /* Remove circular styling */
+    height: 28px;
+    width: 28px;
+    margin: 0 4px;
+    background-color: #e0e0e0;
+    border-radius: 16px; /* Use a subtle rounded corner */
+    
+    /* Text and layout styles */
+    display: inline-flex; /* Use flexbox for easy centering */
+    justify-content: center;
+    align-items: center;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #555;
+
+    /* Other properties */
+    border: 1px solid #ccc;
+    cursor: pointer;
+    padding: 0;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.indicator-btn:hover {
+    background-color: #ccc;
+}
+
+/* Style for the currently active number */
+.indicator-btn.active {
+    background-color: #007aff;
+    color: white;
+    border-color: #007aff;
+}
+
+.highlight {
+    color: #d9534f;
+    font-weight: bold;
+}
+
+/* Apply a flexbox layout to the main page container */
+#page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensure the page is at least as tall as the viewport */
+    padding-top: 120px; /* Add padding to the top equal to the banner's height. Adjust if your banner height is different. */
+    box-sizing: border-box;
+}
+
+/* --- Header/Banner Styles --- */
+.banner {
+    /* This makes the banner stay in one place */
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 120px; /* This height must match the padding-top on #page */
+    
+    /* Your other styles */
+    background-color: #2c3e50;
+    color: white;
+    padding: 12px;
+
+    z-index: 1000; /* Ensures it's on top of other content */
+}
+
+/* Make the main content area grow to fill all available space */
+.content {
+    flex-grow: 1;
+    /* These styles help center the image within the now-flexible content area */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+/* --- Backlink Styles --- */
+#backlink {
+    --color-accent: hsl(198, 100%, 50%);
+    position: fixed; /* Use fixed positioning to keep it on screen */
+    top: 8px;
+    right: 8px;
+    border: 1px dashed black;
+    background-color: white;
+    padding: 8px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    transform: rotate(-2deg) scale(0.9);
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+    /* This is the key fix: make it appear on top of the banner */
+    z-index: 1001; 
+}
+
+#backlink:hover {
+    transform: rotate(2deg) scale(1);
+}
+
+#backlink a {
+    text-decoration: none;
+    color: black;
+    background-image: linear-gradient(to right,
+            var(--color-accent) 0%,
+            var(--color-accent) 100%);
+    background-size: 0% 100%;
+    background-position: left center;
+    background-repeat: no-repeat;
+    transition: background-size 0.2s ease-in-out;
+    padding: 0.5rem;
+}
+
+#backlink a:hover {
+    background-size: 100% 100%;
+    color: white;
 }
