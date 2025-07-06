@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
         "„Etwas Wasser wäre schön“, dachte er, als er eine der Flaschen nahm – beinahe hätte er sie fallen lassen.",
         "„Du bist ein...“ – weiter konnte er das Etikett nicht lesen...", 
         "...denn es verschwand im nächsten Augenblick...",
-        "und war wieder in seinem normalen Zustand.",
+        "..und war wieder in seinem normalen Zustand.",
         "In Panik ging er zur Kasse, um zu bezahlen, was er kaufen wollte. Er konnte nicht länger hier bleiben.",
         "Und – Nein, das konnte <span class='highlight'>nicht real</span> sein. Er schnappte hörbar nach Luft.",
         "Im Bruchteil einer Sekunde war das Gesicht der Kassiererin wieder normal.",
@@ -43,78 +43,89 @@ document.addEventListener('DOMContentLoaded', () => {
     const imageCaption = document.getElementById('image-caption');
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
-    const prevPreview = document.getElementById('prevPreview');
-    const nextPreview = document.getElementById('nextPreview');
     const mainImageContainer = document.querySelector('.main-image-container');
     const indicatorsContainer = document.getElementById('page-indicators');
 
     // --- FUNCTIONS ---
 
     function updateIndicators() {
-        const buttons = indicatorsContainer.children;
-        for (let i = 0; i < buttons.length; i++) {
-            buttons[i].classList.remove('active');
+        // Clear out the old indicators first
+        indicatorsContainer.innerHTML = '';
+
+        let start, end;
+
+        // Determine the range of indicators to show
+        if (currentIndex === 0) {
+            // If at the beginning, show the first 3
+            start = 0;
+            end = Math.min(2, images.length - 1);
+        } else if (currentIndex === images.length - 1) {
+            // If at the end, show the last 3
+            start = Math.max(0, images.length - 3);
+            end = images.length - 1;
+        } else {
+            // Otherwise, center the current index
+            start = currentIndex - 1;
+            end = currentIndex + 1;
         }
-        buttons[currentIndex].classList.add('active');
+
+        // Create and append the new indicator buttons
+        for (let i = start; i <= end; i++) {
+            const button = document.createElement('button');
+            button.classList.add('indicator-btn');
+            button.dataset.index = i;
+            button.textContent = i + 1; // Add the number
+            if (i === currentIndex) {
+                button.classList.add('active');
+            }
+            indicatorsContainer.appendChild(button);
+        }
     }
 
     function updateContent() {
         galleryImage.src = images[currentIndex];
         imageCaption.innerHTML = texts[currentIndex];
-
-        const prevIndex = (currentIndex === 0) ? images.length - 1 : currentIndex - 1;
-        const nextIndex = (currentIndex === images.length - 1) ? 0 : currentIndex + 1;
-
-        prevPreview.src = images[prevIndex];
-        nextPreview.src = images[nextIndex];
-
-        updateIndicators();
+        updateIndicators(); // Call the new function to redraw indicators
     }
 
     function showNext() {
-        currentIndex = (currentIndex < images.length - 1) ? currentIndex + 1 : 0;
-        updateContent();
+        if (currentIndex < images.length - 1) {
+            currentIndex++;
+            updateContent();
+        }
     }
 
     function showPrev() {
-        currentIndex = (currentIndex > 0) ? currentIndex - 1 : images.length - 1;
-        updateContent();
+        if (currentIndex > 0) {
+            currentIndex--;
+            updateContent();
+        }
     }
 
     function handleIndicatorClick(e) {
+        // Check if a button was clicked inside the container
         if (e.target.classList.contains('indicator-btn')) {
             currentIndex = parseInt(e.target.dataset.index);
             updateContent();
         }
     }
 
-    function handleSwipe() {
-        const swipeDistance = touchEndX - touchStartX;
-        if (swipeDistance > 50) showPrev();
-        if (swipeDistance < -50) showNext();
-    }
-
-    // --- INITIALIZATION ---
-
-    // Create indicator dots
-    images.forEach((_, index) => {
-        const button = document.createElement('button');
-        button.classList.add('indicator-btn');
-        button.dataset.index = index;
-        indicatorsContainer.appendChild(button);
-    });
-
-    // Add event listeners
+    // --- EVENT LISTENERS ---
     prevBtn.addEventListener('click', showPrev);
     nextBtn.addEventListener('click', showNext);
     indicatorsContainer.addEventListener('click', handleIndicatorClick);
 
     // Swipe listeners
     let touchStartX = 0;
-    let touchEndX = 0;
     mainImageContainer.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
-    mainImageContainer.addEventListener('touchend', e => { touchEndX = e.changedTouches[0].screenX; handleSwipe(); });
+    mainImageContainer.addEventListener('touchend', e => {
+        const touchEndX = e.changedTouches[0].screenX;
+        if (touchEndX < touchStartX - 50) showNext();
+        if (touchEndX > touchStartX + 50) showPrev();
+    });
 
-    // Load the first image and set the first indicator
+    // --- INITIALIZATION ---
+    // No need to create all indicators here anymore.
+    // Just call updateContent() which will create the first set.
     updateContent();
 });

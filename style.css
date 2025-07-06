@@ -240,27 +240,39 @@ h1 {
     padding: 15px 0;
 }
 
-/* Individual indicator dot style */
+/* Updated style for the numbered indicators */
 .indicator-btn {
-    height: 12px;
-    width: 12px;
-    margin: 0 5px;
-    background-color: #ccc;
-    border-radius: 50%;
-    display: inline-block;
-    border: none;
+    /* Remove circular styling */
+    height: 28px;
+    width: 28px;
+    margin: 0 4px;
+    background-color: #e0e0e0;
+    border-radius: 16px; /* Use a subtle rounded corner */
+    
+    /* Text and layout styles */
+    display: inline-flex; /* Use flexbox for easy centering */
+    justify-content: center;
+    align-items: center;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #555;
+
+    /* Other properties */
+    border: 1px solid #ccc;
     cursor: pointer;
     padding: 0;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .indicator-btn:hover {
-    background-color: #aaa;
+    background-color: #ccc;
 }
 
-/* Style for the currently active dot */
+/* Style for the currently active number */
 .indicator-btn.active {
-    background-color: #007aff; /* You can change this to match your theme */
+    background-color: #007aff;
+    color: white;
+    border-color: #007aff;
 }
 
 .highlight {
