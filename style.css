@@ -65,6 +65,7 @@ h1 {
     justify-content: center;
     gap: 1rem;
     margin-top: 1.5rem;
+    flex-grow: 1;
 }
 
 .main-image-container {
@@ -94,51 +95,7 @@ h1 {
     transform: scale(1.1);
 }
 
-button {
 
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 1.5rem;
-    font-weight: bold;
-    cursor: pointer;
-    border: none;
-    background-color: rgba(0, 0, 0, 0.4);
-    color: white;
-    border-radius: 50%;
-    width: 44px;
-    height: 44px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 10;
-    transition: background-color 0.2s ease, transform 0.2s ease;
-}
-
-#prevBtn {
-    left: 1rem;
-    position: absolute;
-}
-
-#nextBtn {
-    right: 1rem;
-
-    position: absolute;
-}
-
-button:hover {
-    background-color: rgba(0, 0, 0, 0.7);
-}
-
-button:active {
-    transform: translateY(-50%) scale(0.9);
-}
-.toolbar{
-    display: flex;
-    flex-direction: row;
-    gap:16px;
-    position: relative;
-    
-}
 .banner {
     width: 100%;
     height: 200px;
@@ -148,9 +105,10 @@ button:active {
     top: 0;
     left: 0;
     width: 100%;
-
+    z-index: 10;
     color: rgb(198, 198, 198);
     padding: 35px;
+    box-sizing: border-box;
 }
 
 .banner h1 {
@@ -211,7 +169,7 @@ footer {
         height: 45px;
     }
 
-    button {
+    .nav-arrow-btn {
         width: 36px;
         height: 36px;
         font-size: 1.2rem;
@@ -226,8 +184,6 @@ footer {
     .banner,
     .toolbar,
     .preview-image,
-    #prevBtn,
-    #nextBtn,
     footer,
     #backlink {
         display: none;
@@ -267,4 +223,109 @@ footer {
         font-size: 0.9rem;
         border-left-width: 4px;
     }
+
+    .nav-arrow-btn {
+        /* Hide the original text ("Previous", "Next") */
+        font-size: 0;
+        
+        /* Make the buttons circular and smaller for mobile */
+        width: 40px;
+        height: 40px;
+        padding: 0;
+        border-radius: 50%;
+        position: relative; /* Needed for pseudo-element positioning */
+    }
+
+    /* Add the new content ("P" and "N") */
+    .nav-arrow-btn::before {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 1rem; /* Set the font size for the letters */
+        font-weight: bold;
+    }
+
+    
+}
+
+/* Add these styles to the end of your style.css file */
+
+/* New Navigation Container Styles */
+.nav-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 0;
+    gap: 15px; /* Space between buttons and indicators */
+}
+
+/* Updated Text Button Styles */
+.nav-arrow-btn {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    /* Use a pill shape instead of a circle */
+    border-radius: 20px; 
+    /* Remove fixed width/height and use padding */
+    padding: 8px 16px;
+    font-size: 0.9rem; /* Adjusted font size */
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.nav-arrow-btn:hover {
+    background-color: #e0e0e0;
+}
+
+/* Styles for the indicator dots container */
+.indicators-container {
+    text-align: center;
+    padding: 15px 0;
+}
+
+/* Individual indicator dot style */
+.indicator-btn {
+    height: 12px;
+    width: 12px;
+    margin: 0 5px;
+    background-color: #ccc;
+    border-radius: 50%;
+    display: inline-block;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: background-color 0.3s ease;
+}
+
+.indicator-btn:hover {
+    background-color: #aaa;
+}
+
+/* Style for the currently active dot */
+.indicator-btn.active {
+    background-color: #007aff; /* You can change this to match your theme */
+}
+
+.highlight {
+    color: #d9534f;
+    font-weight: bold;
+}
+
+/* Apply a flexbox layout to the main page container */
+#page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensure the page is at least as tall as the viewport */
+    padding-top: 200px; /* Add space for your 200px tall fixed banner */
+    box-sizing: border-box; /* Include padding in the element's total height */
+}
+
+/* Ensure the footer does not shrink and stays at the bottom */
+.footer {
+    flex-shrink: 0;
+    /* Add your footer styling here, e.g., padding, background-color */
+    padding: 1rem;
+    text-align: center;
+    background-color: #f8f8f8;
 }

@@ -20,24 +20,22 @@
             <p>An AI Graphic Novel</p>
         </div>
 
-        <div class="toolbar">
-            <button id="toolbar">1</button>
-            <button id="toolbar">2</button>
-            <button id="toolbar">3</button>
-        </div>
+        
 
         <div class="content">
-            <img id="prevPreview" class="preview-image" alt="Previous preview">
             <div class="main-image-container">
               <img src="assets/images/frame0.png" alt="Gallery image" id="galleryImage">
-               <button id="prevBtn" aria-label="Previous image">&lt;</button>
-            <button id="nextBtn" aria-label="Next image">&gt;</button>
             </div>
-            <img id="nextPreview" class="preview-image" alt="Next preview">
         </div>
 
-        <!-- Add this line for the caption -->
         <div id="image-caption" class="caption-box"></div>
+
+        <!-- This container will now hold the buttons AND the indicators -->
+        <div id="navigation-controls" class="nav-container">
+            <button id="prevBtn" class="nav-arrow-btn">&lt;</button>
+            <div id="page-indicators" class="indicators-container"></div>
+            <button id="nextBtn" class="nav-arrow-btn">&gt;</button>
+        </div>
 
         <div class="footer">
            
