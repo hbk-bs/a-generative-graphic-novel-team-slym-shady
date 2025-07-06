@@ -7,11 +7,11 @@ document.addEventListener('DOMContentLoaded', () => {
         'assets/images/frame12.png', 'assets/images/frame13.png', 'assets/images/frame14.png',
         'assets/images/frame15.png', 'assets/images/frame16.png', 'assets/images/frame17.png',
         'assets/images/frame18.png', 'assets/images/frame19.png', 'assets/images/frame20.png',
-        'assets/images/frame21.png', 'assets/images/frame22.png',
+        'assets/images/frame21.png', 'assets/images/frame22.png', 'assets/images/endframe.png',
     ];
 
     const texts = [
-        "Bilder generiert von Midjourney v6.1, geschrieben von Sarah, Ylva, Liana und Maggie",
+       "'Was ist los?'- Ein KI Graphic Novel",
         "Irgendetwas stimmte nicht. Für ihn hatte es sich immer so angefühlt, als ob etwas nicht stimmte – aber dieser Tag fühlte sich <span class='highlight'>anders</span> an.",
         "Als er den Supermarkt betrat, hatte er das Gefühl, beobachtet zu werden – als wären <span class='highlight'>überall Augen</span>.",
         "Er schaute sich gerade Lebensmittel an, als -",
@@ -33,7 +33,9 @@ document.addEventListener('DOMContentLoaded', () => {
         "Er traute seinen Augen kaum – je mehr er an seiner Haut zupfte, desto <span class='highlight'>grüner</span> wurde er.",
         "Als er in seine neuen großen dunklen Augen blickte, verspürte er keine Angst. Er hatte sich noch nie so wohl gefühlt.",
         "Ein ungewöhnliches Licht erschien im Flur, und als er aus dem Fenster sah, erkannte er das <span class='highlight'>Mutterschiff</span> – und wusste instinktiv, dass er mit ihnen gehen musste.",
-        "Und als er nach draußen ging, wurde ihm klar: Sie würden ihn an einen <span class='highlight'>besseren Ort</span> bringen."
+        "Und als er nach draußen ging, wurde ihm klar: Sie würden ihn an einen <span class='highlight'>besseren Ort</span> bringen.",
+        "generiert von Midjourney, Idee und geschrieben von Sarah, Ylva, Liana und Maggie", 
+        
     ];
 
     let currentIndex = 0;
